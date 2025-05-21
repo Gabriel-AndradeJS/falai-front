@@ -38,7 +38,7 @@ export default function Login() {
   return (
     <div className="bg-black/90 w-full min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md flex flex-col items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg">
-        <Image src={logo} alt="logo" width={150} />
+        <Image className="mb-4" src={logo} alt="logo" width={180} />
         <h1 className="text-2xl uppercase mb-4 text-white text-center">Login</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
