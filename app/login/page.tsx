@@ -8,8 +8,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 
 interface LoginProps {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 const schema = z.object({
@@ -20,36 +20,53 @@ const schema = z.object({
 });
 
 export default function Login() {
-    const { register, handleSubmit, formState: {errors} } = useForm<LoginProps>()
-     const { signIn } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginProps>();
 
-     async function onSubmit(data: LoginProps) {
-        const { email, password } = data;
+  const { signIn } = useAuth();
 
-        const res = await signIn(email, password);
-        console.log(res);
-        
-        }
+  async function onSubmit(data: LoginProps) {
+    const { email, password } = data;
 
-    return (
-        <div className="bg-black/90 w-full h-screen flex items-center justify-center">
-            <div className="w-full mx-2 flex flex-col items-center justify-center md:w-[40vw] bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded shadow-lg">
+    const res = await signIn(email, password);
+    console.log(res);
+  }
 
-                <Image src={logo} alt="logo" width={200} />
-                <h1 className="text-2xl uppercase mb-2 text-white">Login</h1>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center w-full gap-4">
-                    <Input className="md:w-[50%] text-white" type="email" placeholder="Email" 
-                    {...register("email", { required: true })}
-                    />
-                    <Input className="md:w-[50%] text-white" type="password" placeholder="Senha" 
-                    {...register("password", { required: true })}
-                    />
-                    <Link href="/register" className="text-sm text-blue-500 hover:text-blue-700">Não tem uma conta? Crie uma</Link>
-
-                    <button className="bg-blue-500 px-4 py-2 rounded text-white cursor-pointer">Entrar</button>
-                </form>
-
-            </div>
-        </div>
-    )
+  return (
+    <div className="bg-black/90 w-full min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md flex flex-col items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-lg shadow-lg">
+        <Image src={logo} alt="logo" width={150} />
+        <h1 className="text-2xl uppercase mb-4 text-white text-center">Login</h1>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center justify-center w-full gap-4"
+        >
+          <Input
+            className="w-full text-white"
+            type="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
+          />
+          <Input
+            className="w-full text-white"
+            type="password"
+            placeholder="Senha"
+            {...register("password", { required: true })}
+          />
+          <Link
+            href="/register"
+            className="text-sm text-blue-500 hover:text-blue-700 self-start"
+          >
+            Não tem uma conta? Crie uma
+          </Link>
+          <button className="w-full bg-blue-500 px-4 py-2 rounded text-white hover:bg-blue-600 transition">
+            Entrar
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
