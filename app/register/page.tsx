@@ -12,7 +12,7 @@ export default function Register() {
                     <Link href="/login" className="absolute left-0 top-0 flex items-center gap-1 text-blue-500">
                         <MoveLeft /> Voltar
                     </Link>
-                    <Image src={logo} alt="logo" width={150} />
+                    <Image src={logo} alt="logo" width={180} />
                 </div>
                 <h1 className="text-2xl uppercase mb-4 text-white text-center">Registrar</h1>
                 <form className="flex flex-col items-center justify-center w-full gap-4">
